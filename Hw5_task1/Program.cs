@@ -41,36 +41,48 @@ while (i < size)
 Console.WriteLine(string.Join(" ", array));
 Console.WriteLine();
  */
-// Написать программу масштабирования фигуры// Тут для тех кто далеко улетел, чтобы задавались вершины фигуры списком (одной строкой)
-// например: "(0,0) (2,0) (2,2) (0,2)"
-// коэффициент масштабирования k задавался отдельно - 2 или 4 или 0.5
-// В результате показать координаты, которые получатся.
-// при k = 2 получаем "(0,0) (4,0) (4,4) (0,4)"
 
 
-/* int[] CreateArray(int size, int leftside, int rightside)
+// Написать программу масштабирования фигуры
+
+int[] CreateArray(int size, int leftside, int rightside)
 {
     int[] array = new int[size];
     for (int i = 0; i < array.Length; i ++)
         array[i] = new Random().Next(leftside, rightside);
     return array;
 }
+
+void PrintArray(int[] array)
+{
+    Console.Write($"({array[0]}, ");
+    for (int i= 1; i < array.Length; i++)
+    {
+        if (i % 2 == 1) Console.Write ($"{array[i]})");
+        if ( i % 2 == 0) Console.Write($"( {array[i]}, ");
+
+
+    }
+}
 Console.WriteLine("Введите количество точек: ");
 int count = int.Parse(Console.ReadLine()!);
 Console.WriteLine("Введите коэффициент масштабирования");
 int k = int.Parse(Console.ReadLine()!);
 
-for (int i = 0; i < count; i ++)
+int[] arr = CreateArray(count * 2, 0, 100);
+
+PrintArray(arr);
+void ChangeArray(int[] array, int k)
 {
-    int[] arr = CreateArray(2, 0, 100);
-    Console.WriteLine(String.Join(", ", arr));
-    Console.WriteLine();
-    for (int j = 0; j < 2; j ++) arr[j] = arr[j] *k;
-    Console.WriteLine(String.Join(", ", arr));
-    Console.WriteLine();
-} */
-
-
+    for (int i = 0; i < arr.Length; i++)
+    {
+        arr[i] = arr[i] * k;
+    }
+}
+Console.WriteLine();
+ChangeArray(arr, k);
+PrintArray(arr);
+Console.WriteLine();
 // Написать программу копирования массива
 /* Console.WriteLine("Введите размер массива: ");
 int[] CreateArray(int size, int leftside, int rightside)
